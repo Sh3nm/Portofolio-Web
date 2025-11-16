@@ -69,7 +69,7 @@ export default function Hero() {
         <div className="grid gap-8 md:grid-cols-12 md:gap-10 items-center">
           <div className="md:col-span-7">
             <h1 ref={titleRef} className="text-pretty text-4xl md:text-6xl font-semibold leading-tight">
-              Hi, I’m Shen.
+              Hi, I&apos;m Shen.
               <span className="block text-teal-600">Full Stack Developer</span>
             </h1>
             <p ref={subtitleRef} className="mt-4 max-w-prose text-balance text-muted-foreground">

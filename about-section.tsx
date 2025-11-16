@@ -31,8 +31,8 @@ export default function AboutSection() {
       <div className="text-center max-w-4xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-semibold mb-6">About Me</h2>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          I'm Huraira Shenmue Mahanee, a 3rd Year Computer Science student at Institut Teknologi Sepuluh Nopember.
-          I'm eager to contribute to meaningful projects and grow through collaboration.
+          I&apos;m Huraira Shenmue Mahanee, a 3rd Year Computer Science student at Institut Teknologi Sepuluh Nopember
+          I&apos;m eager to contribute to meaningful projects and grow through collaboration.
         </p>
       </div>
     </div>
