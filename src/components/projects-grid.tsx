@@ -13,6 +13,7 @@ type Project = {
   description: string
   href: string
   imageAlt: string
+  image: string
 }
 
 const projects: Project[] = [
@@ -21,24 +22,28 @@ const projects: Project[] = [
     description: "Creating Evermos ecommerce backend using Go, Gorm, Fiber and MySQL.",
     href: "https://github.com/Sh3nm/Evermos_GolangAPI",
     imageAlt: "Postman Overview",
+    image: "/projects/evermos-backend-postman.png"
   },
   {
     title: "Jadwal Sholat Web App",
     description: "A web app for displaying daily Islamic prayer times based on the user's location. Developed using Next.js and Tailwind CSS and integrate with external API",
     href: "https://waktu-sholat-bice.vercel.app/",
     imageAlt: "Jadwal Sholat",
+    image: "/projects/waktu-sholat.png"
   },
   {
     title: "OKCLEAN - Web Cleaning Service Company Profile",
     description: "A company profile website created for a cleaning service business. The frontend is built using HTML, CSS, and JavaScript, while the backend is implemented with PHP to handle data processing and contact form submissions. Designed to provide customers with clear information about services, pricing, and business details.",
     href: "https://cleaning-service-blond.vercel.app/",
     imageAlt: "Web Cleaning Service",
+    image: "/projects/okclean.png"
   },
   {
     title: "Brain Tumor Detection",
     description: "This project focuses on detecting and classifying brain tumor types from MRI images using deep learning techniques. The dataset is annotated in YOLO format and supports two primary tasks: identifying the location of the tumor through object detection, and classifying the tumor",
     href: "https://huggingface.co/spaces/cashewwww/Brain-Tumor",
     imageAlt: "Brain Tumor Detection",
+    image: "/projects/braintumor-detection.png"
   },
 ]
 
@@ -118,7 +123,7 @@ export default function ProjectsGrid() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={`/.jpg?height=200&width=600&query=${encodeURIComponent(p.title + " preview")}`}
+              src={p.image}
               alt={p.imageAlt}
               className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />
