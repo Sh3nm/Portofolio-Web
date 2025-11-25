@@ -1,20 +1,22 @@
-import type { Metadata } from "next"
+"use client"
+
+import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import Preloader from "@/components/ui/preloader"
 import Hero from "@/components/hero"
 import AboutSection from "@/components/about-section"
 import TechStackSection from "@/components/tech-stack-section"
 import ProjectsGrid from "@/components/projects-grid"
 import ContactSection from "@/components/contact-section"
 
-export const metadata: Metadata = {
-  title: "Portfolio — Your Name",
-  description: "Personal website built with Next.js, Tailwind, and GSAP.",
-}
-
 export default function Page() {
+  const [isLoading, setIsLoading] = useState(true)
+
   return (
-    <main className="min-h-dvh">
+    <>
+      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+      <main className="min-h-dvh">
       <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
         <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
           <Link href="#hero" className="font-semibold text-balance">
@@ -71,5 +73,6 @@ export default function Page() {
         </div>
       </footer>
     </main>
+    </>
   )
 }
