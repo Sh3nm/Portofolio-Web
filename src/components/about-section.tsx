@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import SectionHeading from "@/components/section-heading"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -27,12 +28,22 @@ export default function AboutSection() {
   }, [])
 
   return (
-    <div ref={sectionRef} className="mx-auto max-w-6xl px-4 py-20 md:py-28">
-      <div className="text-center max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-semibold mb-6">About Me</h2>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          I'm Huraira Shenmue Mahanee, a 3rd Year Computer Science student at Institut Teknologi Sepuluh Nopember.
-          I'm eager to contribute to meaningful projects and grow through collaboration.
+    <div ref={sectionRef} className="relative mx-auto max-w-6xl px-4 py-20 md:py-28">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-0 top-8 -z-10 select-none overflow-hidden"
+      >
+        <span className="text-stroke-faint text-[14vw] font-bold leading-none tracking-tighter">ABOUT</span>
+      </div>
+
+      <SectionHeading index="01" label="About" title="Who I Am" align="center" />
+
+      <div className="mx-auto mt-10 max-w-4xl text-center">
+        <p className="text-pretty text-2xl font-medium leading-relaxed md:text-4xl md:leading-snug">
+          I&apos;m <span className="text-teal-400">Huraira Shenmue Mahanee</span>, a 3rd year Computer Science student
+          at <span className="text-teal-400">Institut Teknologi Sepuluh Nopember</span>. I&apos;m eager to contribute
+          to meaningful projects and grow through{" "}
+          <span className="text-stroke-teal font-semibold">collaboration</span>.
         </p>
       </div>
     </div>

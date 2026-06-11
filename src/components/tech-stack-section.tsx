@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import SectionHeading from "@/components/section-heading"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -20,56 +21,54 @@ const techStack: TechStackItem[] = [
   { name: "Next.js", icon: "/next.png", category: "frontend" },
   { name: "Tailwind CSS", icon: "/tailwind.png", category: "frontend" },
   { name: "Gsap", icon: "/gsap.png", category: "frontend" },
-  
+
   // Backend
   { name: "Golang", icon: "/Golang.png", category: "backend" },
   { name: "NestJS", icon: "/nest.svg", category: "backend" },
   { name: "Fiber", icon: "/fIBER.webp", category: "backend" },
-  
+
   // Database
   { name: "MySQL", icon: "/mysql.svg", category: "database" },
   { name: "PostgreSQL", icon: "/postgreSQL.png", category: "database" },
   { name: "Prisma", icon: "/prisma.png", category: "database" },
-  
+
   // Tools
   { name: "Git", icon: "/git.png", category: "tools" },
   { name: "Postman", icon: "/Postman Logo.png", category: "tools" },
 ]
 
 const categories = [
-  { key: "frontend" as const, title: "FRONTEND", icon: "✨" },
-  { key: "backend" as const, title: "BACKEND", icon: "🔧" },
-  { key: "database" as const, title: "DATABASE", icon: "🗄️" },
-  { key: "tools" as const, title: "TOOLS", icon: "⚙️" },
+  { key: "frontend" as const, title: "Frontend", code: "FE" },
+  { key: "backend" as const, title: "Backend", code: "BE" },
+  { key: "database" as const, title: "Database", code: "DB" },
+  { key: "tools" as const, title: "Tools", code: "TL" },
 ]
 
 export default function TechStackSection() {
   const sectionRef = useRef<HTMLDivElement | null>(null)
-  const titleRef = useRef<HTMLHeadingElement | null>(null)
+  const headingRef = useRef<HTMLDivElement | null>(null)
   const categoriesRef = useRef<HTMLDivElement[]>([])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate title
-      gsap.from(titleRef.current, {
+      gsap.from(headingRef.current, {
         opacity: 0,
         y: 30,
         duration: 0.8,
         ease: "power3.out",
         scrollTrigger: {
-          trigger: titleRef.current,
+          trigger: headingRef.current,
           start: "top 80%",
           toggleActions: "restart none none none",
         },
       })
 
-      // Animate categories with stagger
       gsap.from(categoriesRef.current, {
         opacity: 0,
         y: 40,
         duration: 0.6,
         ease: "power3.out",
-        stagger: 0.2,
+        stagger: 0.1,
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 70%",
@@ -83,44 +82,44 @@ export default function TechStackSection() {
 
   return (
     <div ref={sectionRef} className="mx-auto max-w-6xl px-4 py-20 md:py-28">
-      <div className="text-center mb-16">
-        <div className="flex items-center justify-center gap-2 mb-4">
-          <span className="text-2xl">⭐</span>
-          <h2 ref={titleRef} className="text-sm font-medium text-muted-foreground tracking-wider uppercase">
-            MY STACK
-          </h2>
-        </div>
+      <div ref={headingRef}>
+        <SectionHeading index="03" label="Stack" title="Tools of the Trade" />
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
         {categories.map((category, categoryIndex) => (
           <div
             key={category.key}
             ref={(el) => {
               if (el) categoriesRef.current[categoryIndex] = el
             }}
-            className="text-center"
+            className="group/panel relative overflow-hidden rounded-xl border bg-card/40 p-5 backdrop-blur transition-colors duration-300 hover:border-teal-500/50"
           >
-            <h3 className="text-2xl font-bold text-muted-foreground mb-8 tracking-wider">
-              {category.title}
-            </h3>
-            
-            <div className="flex flex-col gap-6">
+            <span
+              aria-hidden="true"
+              className="text-stroke-faint pointer-events-none absolute -right-2 -top-4 select-none text-7xl font-bold tracking-tighter"
+            >
+              {category.code}
+            </span>
+
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-xs text-teal-400">0{categoryIndex + 1}</span>
+              <h3 className="font-medium uppercase tracking-[0.2em]">{category.title}</h3>
+            </div>
+
+            <div className="mt-6 flex flex-col gap-2">
               {techStack
                 .filter((tech) => tech.category === category.key)
                 .map((tech) => (
                   <div
                     key={tech.name}
-                    className="flex items-center gap-4 p-3 rounded-lg hover:bg-accent/50 transition-colors group"
+                    className="group flex items-center gap-3 rounded-lg border border-transparent p-2 transition-colors hover:border-teal-500/30 hover:bg-teal-500/5"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-background border overflow-hidden group-hover:scale-110 transition-transform">
-                      <img 
-                        src={tech.icon} 
-                        alt={`${tech.name} icon`}
-                        className="w-full h-full object-cover"
-                      />
+                    <div className="h-9 w-9 overflow-hidden rounded-lg border bg-background transition-transform group-hover:scale-110">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={tech.icon} alt={`${tech.name} icon`} className="h-full w-full object-cover" />
                     </div>
-                    <span className="font-medium text-sm">{tech.name}</span>
+                    <span className="text-sm font-medium">{tech.name}</span>
                   </div>
                 ))}
             </div>

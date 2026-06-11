@@ -116,7 +116,44 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
+  }
+  ::selection {
+    background: oklch(0.6 0.12 185);
+    color: oklch(0.985 0 0);
+  }
+}
+
+@layer utilities {
+  /* Outlined display text — used for ghost/echo headings */
+  .text-stroke-teal {
+    -webkit-text-stroke: 1px rgba(45, 212, 191, 0.45);
+    color: transparent;
+  }
+  .text-stroke-faint {
+    -webkit-text-stroke: 1px oklch(1 0 0 / 12%);
+    color: transparent;
+  }
+
+  .animate-marquee {
+    animation: marquee 28s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee {
+      animation: none;
+    }
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }

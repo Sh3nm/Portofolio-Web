@@ -66,12 +66,13 @@ export default function ProjectsGrid() {
         gsap.from(el, {
           opacity: 0,
           y: 24,
-          duration: 0.6,
+          duration: 0.8,
           ease: "power3.out",
           delay: i * 0.05,
           scrollTrigger: {
             trigger: el,
             start: "top 85%",
+            toggleActions: "restart none none none",
           },
         })
       })
@@ -86,18 +87,16 @@ export default function ProjectsGrid() {
     gsap.to(card, {
       y: entering ? -6 : 0,
       scale: entering ? 1.02 : 1,
-      rotateX: entering ? 1 : 0,
       boxShadow: entering ? "0 10px 24px rgba(13,148,136,0.18)" : "0 1px 0 rgba(0,0,0,0.05)",
       duration: 0.3,
       ease: "power2.out",
-      transformPerspective: 600,
     })
   }
 
   return (
     <div ref={sectionRef} className="mx-auto max-w-6xl px-4 py-20 md:py-28">
       <div className="flex items-center justify-between gap-4">
-        <h2 className="text-3xl md:text-4xl font-semibold">Selected Projects</h2>
+        <h2 className="text-balance text-3xl md:text-4xl font-semibold">Selected Projects</h2>
         <Button
           className="hidden md:inline-flex bg-teal-600 hover:bg-teal-700 text-white"
         >
@@ -123,8 +122,8 @@ export default function ProjectsGrid() {
               className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />
             <div className="p-4">
-              <h3 className="font-medium">{p.title}</h3>
-              <p className="text-sm text-muted-foreground mt-1">{p.description}</p>
+              <h3 className="text-balance font-medium">{p.title}</h3>
+              <p className="text-pretty text-sm text-muted-foreground mt-1">{p.description}</p>
               <a
                 href={p.href}
                 className="mt-4 inline-flex items-center text-teal-700 hover:text-teal-800"
