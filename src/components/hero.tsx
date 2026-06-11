@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger)
 const ease = [0.16, 1, 0.3, 1] as const
 
 const marqueeItems = [
-  "Full Stack Developer",
+  "Software & AI Engineer",
   "React",
   "Next.js",
   "TypeScript",
@@ -75,9 +75,9 @@ export default function Hero() {
             >
               Hi, I&apos;m Shen.
               <span className="mt-2 block bg-gradient-to-r from-teal-300 to-teal-500 bg-clip-text text-transparent">
-                Full Stack
+                Software &amp;
               </span>
-              <span className="text-stroke-teal block">Developer</span>
+              <span className="text-stroke-teal block">AI Engineer</span>
             </motion.h1>
 
             <motion.p
